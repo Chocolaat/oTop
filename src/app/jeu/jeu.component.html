@@ -1,0 +1,71 @@
+
+<h1>Jeu !</h1>
+
+
+<div *ngIf="!jeuEnCours">
+    <div fxLayout="column" fxLayoutAlign="space-between center"> 
+        <button mat-stroked-button color="warn" (click)="lancerLeJeu()"> LANCER LE JEU</button>
+    </div>
+</div>
+
+
+<div *ngIf="jeuEnCours" style="width:100%;height:70%;">
+
+    <div fxLayout="column" fxLayoutAlign="space-between center"> 
+        <div fxLayout="row" fxLayoutGap="10px"> 
+            <button mat-stroked-button color="primary" class="choixBoutton" (click)="choixSaisFaire()">Oui</button>
+            <button mat-stroked-button color="primary" class="choixBoutton" (click)="choixSaisPasFaire()"> Oui, avec aide </button>
+            <button mat-stroked-button color="primary" class="choixBoutton" (click)="choixAvecAide()"> Pas très bien </button>
+            <button mat-stroked-button color="primary" class="choixBoutton" (click)="choixAvecAide()"> Non </button>
+        </div>
+    </div>
+
+
+    <div fxLayout="column" fxLayoutAlign="space-between center" style="margin:auto; text-align: center;width:100%;height:100%; vertical-align: middle;"  > 
+        <img class="images" style="margin:auto" src="{{ imageCourrante }}" />
+    </div>
+
+
+    <div fxLayout="column" fxLayoutAlign="space-between center"> 
+        <button mat-stroked-button color="warn" (click)="terminerLeJeu()"> TERMINER LE JEU</button>
+    </div>
+
+</div>
+
+
+ 
+<div style="margin-top: 40px;" *ngIf="resultats">
+
+    <div class="container">
+        <div class="row align-items-center">
+          <div class="col-sm" style="text-align: center;">Vous savez faire ({{ resultatsSaisFaire?.length }})</div>
+          <div class="col-sm" style="text-align: center;">Vous ne savez pas faire ({{ resultatsSaisPasfaire?.length }})</div>
+          <div class="col-sm" style="text-align: center;">Avec de l'aide ({{ resultatsAvecAide?.length }})</div>
+        </div>
+        <div class="row align-items-top secondRow">
+            <div class="col-sm" style="text-align: center; border: solid 2px #000;">
+                <mat-grid-list cols="3" rowHeight="2:1">
+                    <mat-grid-tile *ngFor="let item of resultatsSaisFaire">
+                        <img  class="petitesImages" src="{{ item }}" />
+                      </mat-grid-tile>
+                </mat-grid-list>
+            </div>
+
+            <div class="col-sm" style="text-align: center; border: solid 2px #000;">
+                <mat-grid-list cols="3" rowHeight="2:1">
+                    <mat-grid-tile *ngFor="let item of resultatsSaisPasfaire">
+                        <img  class="petitesImages" src="{{ item }}" />
+                      </mat-grid-tile>
+                </mat-grid-list>
+            </div>
+            <div class="col-sm" style="text-align: center; border: solid 2px #000;">
+                <mat-grid-list cols="3" rowHeight="2:1">
+                    <mat-grid-tile *ngFor="let item of resultatsAvecAide">
+                        <img  class="petitesImages" src="{{ item }}" />
+                      </mat-grid-tile>
+                </mat-grid-list>
+            </div>
+          </div>
+      </div>
+
+</div>
